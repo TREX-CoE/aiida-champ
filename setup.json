@@ -1,0 +1,47 @@
+{
+    "name": "aiida-diff",
+    "author": "The AiiDA developers group",
+    "author_email": "",
+    "description": "AiiDA demo plugin that computes the difference between two files.",
+    "url": "https://github.com/aiidateam/aiida-diff",
+    "license": "MIT",
+    "classifiers": [
+        "Programming Language :: Python"
+    ],
+    "version": "0.1.0a0",
+    "entry_points": {
+        "aiida.data": [
+            "diff = aiida_diff.data:DiffParameters"
+        ],
+        "aiida.calculations": [
+            "diff = aiida_diff.calculations:DiffCalculation"
+        ],
+        "aiida.parsers": [
+            "diff = aiida_diff.parsers:DiffParser"
+        ],
+        "aiida.cmdline.data": [
+            "diff = aiida_diff.data.data_cli:cli"
+        ]
+    },
+    "scripts": ["examples/cli.py"],
+    "setup_requires": ["reentry"],
+    "reentry_register": true,
+    "install_requires": [
+        "aiida >= 0.11"
+    ],
+    "extras_require": {
+        "testing": [
+            "aiida-core[testing]",
+            "wheel>=0.31"
+        ],
+        "pre-commit": [
+            "pre-commit",
+            "yapf",
+            "prospector",
+            "pylint"
+        ],
+        "docs": [
+            "sphinx"
+        ]
+    }
+}
