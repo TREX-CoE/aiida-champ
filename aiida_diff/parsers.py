@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Parsers provided by the plugin
+Parsers provided by aiida_diff.
 
 Register parsers via the "aiida.parsers" entry point in setup.json.
 """

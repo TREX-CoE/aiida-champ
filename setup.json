@@ -21,9 +21,11 @@
         ],
         "aiida.cmdline.data": [
             "diff = aiida_diff.data.data_cli:cli"
+        ],
+        "console_scripts": [
+            "diff-submit=aiida_diff.cli:submit"
         ]
     },
-    "scripts": ["examples/cli.py"],
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
