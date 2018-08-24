@@ -1,3 +1,1 @@
-setuptools>34
-aiida>=0.11
-sphinx
+-e .[doc]
