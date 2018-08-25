@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aiidateam/aiida-diff.svg?branch=master)](https://travis-ci.org/aiidateam/aiida-diff) [![Docs status](https://readthedocs.org/projects/aiida-diff/badge)](http://aiida-diff.readthedocs.io/)
+
 # aiida-diff
 
 AiiDA demo plugin that computes the difference between two files.
