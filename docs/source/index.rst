@@ -7,10 +7,12 @@ The aiida-diff plugin for `AiiDA`_
 
 ``aiida-diff`` is available at http://github.com/aiidateam/aiida-diff
 
+
 .. toctree::
    :maxdepth: 2
 
    user_guide/index
+   developer_guide/index
    module_guide/index
 
 If you use this plugin for your research, please cite the following work:
@@ -23,6 +25,10 @@ If you use AiiDA for your research, please cite the following work:
   and Boris Kozinsky, *AiiDA: automated interactive infrastructure and database
   for computational science*, Comp. Mat. Sci 111, 218-230 (2016);
   http://dx.doi.org/10.1016/j.commatsci.2015.09.013; http://www.aiida.net.
+
+``aiida-diff`` is released under the MIT license. 
+
+
 
 
 Indices and tables
