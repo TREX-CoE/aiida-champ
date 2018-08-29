@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/aiidateam/aiida-diff.svg?branch=master)](https://travis-ci.org/aiidateam/aiida-diff) [![Docs status](https://readthedocs.org/projects/aiida-diff/badge)](http://aiida-diff.readthedocs.io/) [![PyPI version](https://badge.fury.io/py/aiida-diff.svg)](https://badge.fury.io/py/aiida-diff)
+[![Build Status](https://travis-ci.org/aiidateam/aiida-diff.svg?branch=master)](https://travis-ci.org/aiidateam/aiida-diff) [![Coverage Status](https://coveralls.io/repos/github/aiida-diff/aiida-diff/badge.svg?branch=master)](https://coveralls.io/github/aiida-diff/aiida-diff?branch=master) [![Docs status](https://readthedocs.org/projects/aiida-diff/badge)](http://aiida-diff.readthedocs.io/) [![PyPI version](https://badge.fury.io/py/aiida-diff.svg)](https://badge.fury.io/py/aiida-diff)
 
 # aiida-diff
 
