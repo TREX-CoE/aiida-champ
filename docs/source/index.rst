@@ -13,7 +13,7 @@ The aiida-diff plugin for `AiiDA`_
 
    user_guide/index
    developer_guide/index
-   module_guide/index
+   API documentation <apidoc/aiida_diff>
 
 If you use this plugin for your research, please cite the following work:
 
