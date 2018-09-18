@@ -5,14 +5,16 @@ Usage: verdi run submit.py
 
 Note: This script assumes you have set up computer and code as in README.md.
 """
+from __future__ import absolute_import
+from __future__ import print_function
+import os
 import aiida_diff.tests as tests
 from aiida.orm.data.singlefile import SinglefileData
-import os
+from aiida.orm import DataFactory
 
 code = tests.get_code(entry_point='diff')
 
 # Prepare input parameters
-from aiida.orm import DataFactory
 DiffParameters = DataFactory('diff')
 parameters = DiffParameters({'ignore-case': True})
 
@@ -33,5 +35,5 @@ calc.use_file2(file2)
 
 calc.store_all()
 calc.submit()
-print("submitted calculation; calc=Calculation(uuid='{}') # ID={}"\
-        .format(calc.uuid,calc.dbnode.pk))
+print("submitted calculation; calc=Calculation(uuid='{}') # ID={}".format(
+    calc.uuid, calc.dbnode.pk))

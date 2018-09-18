@@ -45,10 +45,8 @@ Online documentation
 The documentation of ``aiida-diff``
 is ready for `ReadTheDocs <https://readthedocs.org/>`_:
 
-#. Add the ``aiida-diff`` repository on your RTD profile, preferably using ``aiida-diff`` as the project name
-#. In **Admin => Advanced settings => Requirements file** enter ``docs/requirements_for_rtd.txt``
+Simply add the ``aiida-diff`` repository on your RTD profile, preferably using ``aiida-diff`` as the project name - that's it!
 
-Done.
 
 PyPI release
 ++++++++++++

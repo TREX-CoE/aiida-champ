@@ -1,6 +1,9 @@
 """ Tests for calculations
 
 """
+from __future__ import print_function
+from __future__ import absolute_import
+
 import aiida_diff.tests as tests
 from aiida.utils.fixtures import PluginTestCase
 import os
