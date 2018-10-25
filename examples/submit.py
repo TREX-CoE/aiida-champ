@@ -9,7 +9,6 @@ from __future__ import absolute_import
 from __future__ import print_function
 import os
 import aiida_diff.tests as tests
-from aiida.orm.data.singlefile import SinglefileData
 from aiida.orm import DataFactory
 
 code = tests.get_code(entry_point='diff')
@@ -18,8 +17,11 @@ code = tests.get_code(entry_point='diff')
 DiffParameters = DataFactory('diff')
 parameters = DiffParameters({'ignore-case': True})
 
-file1 = SinglefileData(file=os.path.join(tests.TEST_DIR, 'file1.txt'))
-file2 = SinglefileData(file=os.path.join(tests.TEST_DIR, 'file2.txt'))
+SinglefileData = DataFactory("singlefile")
+file1 = SinglefileData(
+    file=os.path.join(tests.TEST_DIR, "input_files", 'file1.txt'))
+file2 = SinglefileData(
+    file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
 
 # set up calculation
 calc = code.new_calc()

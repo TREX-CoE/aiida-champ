@@ -32,17 +32,18 @@ verdi run submit.py        # submit test calculation
 verdi calculation list -a  # check status of calculation
 ```
 
-If you have already set up your own aiida_diff code using `verdi code setup`, you may want to try the following command:
-```
-diff-submit  # uses aiida_diff.cli
+The plugin also includes verdi commands to inspect its data types:
+```shell
+verdi data diff list
+verdi data diff export <PK>
 ```
 
 ## Tests
 
-The following will discover and run all unit test:
+The following will discover and run all unit tests:
 ```shell
 pip install -e .[testing]
-python manage.py
+pytest -v
 ```
 
 ## License

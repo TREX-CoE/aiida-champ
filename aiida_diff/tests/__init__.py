@@ -6,8 +6,10 @@ testing that does not pollute your profiles/databases.
 
 # Helper functions for tests
 from __future__ import absolute_import
+from __future__ import print_function
 import os
 import tempfile
+import aiida_diff.utils as utils
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_COMPUTER = 'localhost-test'
@@ -15,18 +17,6 @@ TEST_COMPUTER = 'localhost-test'
 executables = {
     'diff': 'diff',
 }
-
-
-def get_backend():
-    """ Return database backend.
-
-    Reads from 'TEST_AIIDA_BACKEND' environment variable.
-    Defaults to django backend.
-    """
-    from aiida.backends.profile import BACKEND_DJANGO, BACKEND_SQLA
-    if os.environ.get('TEST_AIIDA_BACKEND') == BACKEND_SQLA:
-        return BACKEND_SQLA
-    return BACKEND_DJANGO
 
 
 def get_path_to_executable(executable):
@@ -47,13 +37,15 @@ def get_path_to_executable(executable):
     return path
 
 
-def get_computer(name=TEST_COMPUTER):
-    """Get local computer.
+def get_computer(name=TEST_COMPUTER, workdir=None):
+    """Get AiiDA computer.
 
-    Sets up local computer with 'name' or reads it from database,
-    if it exists.
+    Loads computer 'name' from the database, if exists.
+    Sets up local computer 'name', if it isn't found in the DB.
     
-    :param name: Name of local computer
+    :param name: Name of computer to load or set up.
+    :param workdir: path to work directory 
+        Used only when creating a new computer.
 
     :return: The computer node 
     :rtype: :py:class:`aiida.orm.Computer` 
@@ -61,24 +53,51 @@ def get_computer(name=TEST_COMPUTER):
     from aiida.orm import Computer
     from aiida.common.exceptions import NotExistent
 
-    try:
-        computer = Computer.get(name)
-    except NotExistent:
+    if utils.AIIDA_VERSION < utils.StrictVersion('1.0a0'):
+        try:
+            computer = Computer.get(name)
+        except NotExistent:
+            # pylint: disable=abstract-class-instantiated,no-value-for-parameter, unexpected-keyword-arg
+            if workdir is None:
+                workdir = tempfile.mkdtemp()
 
-        computer = Computer(
-            name=name,
-            description='localhost computer set up by aiida_diff tests',
-            hostname=TEST_COMPUTER,
-            workdir=tempfile.mkdtemp(),
-            transport_type='local',
-            scheduler_type='direct',
-            enabled_state=True)
-        computer.store()
+            computer = Computer(
+                name=name,
+                description='localhost computer set up by aiida_diff tests',
+                hostname=name,
+                workdir=workdir,
+                transport_type='local',
+                scheduler_type='direct',
+                enabled_state=True)
+    #TODO: simpify once API improvements are in place
+    else:
+        from aiida.orm.backend import construct_backend
+        backend = construct_backend()
+
+        try:
+            computer = backend.computers.get(name=name)
+        except NotExistent:
+            if workdir is None:
+                workdir = tempfile.mkdtemp()
+
+            computer = backend.computers.create(
+                name=name,
+                description='localhost computer set up by aiida_diff tests',
+                hostname=name,
+                workdir=workdir,
+                transport_type='local',
+                scheduler_type='direct',
+                enabled_state=True)
+
+    computer.store()
+
+    # TODO configure computer for user, see
+    # aiida_core.aiida.cmdline.commands.computer.Computer.computer_configure
 
     return computer
 
 
-def get_code(entry_point, computer_name=TEST_COMPUTER):
+def get_code(entry_point, computer=None):
     """Get local code.
 
     Sets up code for given entry point on given computer.
@@ -92,8 +111,6 @@ def get_code(entry_point, computer_name=TEST_COMPUTER):
     from aiida.orm import Code
     from aiida.common.exceptions import NotExistent
 
-    computer = get_computer(computer_name)
-
     try:
         executable = executables[entry_point]
     except KeyError:
@@ -101,8 +118,12 @@ def get_code(entry_point, computer_name=TEST_COMPUTER):
             "Entry point {} not recognized. Allowed values: {}".format(
                 entry_point, list(executables.keys())))
 
+    if computer is None:
+        computer = get_computer()
+
     try:
-        code = Code.get_from_string('{}@{}'.format(executable, computer_name))
+        code = Code.get_from_string('{}@{}'.format(executable,
+                                                   computer.get_name()))
     except NotExistent:
         path = get_path_to_executable(executable)
         code = Code(
@@ -113,3 +134,52 @@ def get_code(entry_point, computer_name=TEST_COMPUTER):
         code.store()
 
     return code
+
+
+def test_calculation_execution(calc,
+                               allowed_returncodes=(0, ),
+                               check_paths=None):
+    """ test that a calculation executes successfully
+
+    :param calc: the calculation
+    :param allowed_returncodes: raise RunTimeError if return code is not in allowed_returncodes
+    :param check_paths: raise OSError if these relative paths are not in the folder after execution
+    :return:
+    """
+    # pylint: disable=too-many-locals
+    from aiida.common.folders import SandboxFolder
+    import stat
+    import subprocess
+
+    # output input files and scripts to temporary folder
+    with SandboxFolder() as folder:
+
+        subfolder, script_filename = calc.submit_test(folder=folder)
+        print("inputs created at {}".format(subfolder.abspath))
+
+        script_path = os.path.join(subfolder.abspath, script_filename)
+        scheduler_stderr = calc._SCHED_ERROR_FILE  # pylint: disable=protected-access
+
+        # we first need to make sure the script is executable
+        st = os.stat(script_path)
+        os.chmod(script_path, st.st_mode | stat.S_IEXEC)
+        # now call script, NB: bash -l -c is required to access global variable loaded in .bash_profile
+        returncode = subprocess.call(["bash", "-l", "-c", script_path],
+                                     cwd=subfolder.abspath)
+
+        if returncode not in allowed_returncodes:
+
+            err_msg = "process failed (and couldn't find stderr file: {})".format(
+                scheduler_stderr)
+            stderr_path = os.path.join(subfolder.abspath, scheduler_stderr)
+            if os.path.exists(stderr_path):
+                with open(stderr_path) as f:
+                    err_msg = "Process failed with stderr:\n{}".format(
+                        f.read())
+            raise RuntimeError(err_msg)
+
+        if check_paths is not None:
+            for outpath in check_paths:
+                subfolder.get_abs_path(outpath, check_existence=True)
+
+        print("calculation completed execution")

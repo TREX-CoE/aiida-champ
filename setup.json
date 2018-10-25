@@ -20,17 +20,17 @@
             "diff = aiida_diff.parsers:DiffParser"
         ],
         "aiida.cmdline.data": [
-            "diff = aiida_diff.data.data_cli:cli"
-        ],
-        "console_scripts": [
-            "diff-submit=aiida_diff.cli:submit"
+            "diff = aiida_diff.cli:data_cli"
         ]
     },
+    "include_package_data": true,
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
-        "aiida-core>=0.12.2,<1.0.0",
-        "six"
+        "aiida-core>=0.12.2,<1.0.0a0; python_version < '3'",
+        "aiida-core>=1.0.0a0; python_version >= '3'",
+        "six",
+        "voluptuous"
     ],
     "extras_require": {
         "testing": [
@@ -38,7 +38,8 @@
             "pgtest==1.1.0",
             "sqlalchemy-diff==0.1.3",
             "wheel>=0.31",
-            "coverage"
+            "coverage",
+            "pytest==3.6.3"
         ],
         "pre-commit": [
             "pre-commit==1.11.0",
