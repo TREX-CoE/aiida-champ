@@ -9,9 +9,8 @@ import aiida_diff.tests as tests
 import pytest
 
 
-# pylint: disable=unused-argument,too-many-locals
 @pytest.mark.process_execution
-def test_process(new_database, new_workdir):
+def test_process(new_workdir):  # pylint: disable=too-many-locals
     """Test running a calculation
     note this does not test that the expected outputs are created of output parsing"""
     from aiida.plugins import DataFactory, CalculationFactory
