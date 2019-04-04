@@ -9,15 +9,9 @@ variables:
   AIIDA_DEVELOP_GIT_HASH: e852d66fc51345fbdb8ebf98580a5646d79bc043
 
 jobs:
-
-- job: setup
+- job: test
   pool:
     vmImage: 'Ubuntu-16.04'
-
-  steps:
-  - template: .ci/azure-templates/setup-steps.yml
-
-- job: test
   strategy:
     matrix:
       Python27:
@@ -25,10 +19,9 @@ jobs:
       Python36:
         python.version: '3.6'
     maxParallel: 4
-  dependsOn:
-    - setup
 
   steps:
+  - template: .ci/azure-templates/setup-steps.yml
   - template: .ci/azure-templates/install-steps.yml
 
   - script: |
