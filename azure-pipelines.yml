@@ -1,6 +1,3 @@
-# Python package
-# Create and test a Python package on multiple Python versions.
-# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 trigger:
 - master
@@ -19,13 +16,12 @@ jobs:
       Python36:
         python.version: '3.6'
     maxParallel: 4
-
   steps:
-  - template: .ci/azure-templates/setup-steps.yml
-  - template: .ci/azure-templates/install-steps.yml
+  # - template: .ci/azure-templates/apt-steps.yml
+  - template: .ci/azure-templates/conda-steps.yml
+  - template: .ci/azure-templates/pip-steps.yml
 
-  - script: |
-      py.test --junitxml=test-results.xml --cov aiida_zeopp --cov-append .
+  - script: py.test --junitxml=test-results.xml --cov aiida_zeopp --cov-append .
     displayName: 'Run pytest'
 
   - task: PublishTestResults@2
@@ -42,18 +38,12 @@ jobs:
       Python36:
         python.version: '3.6'
     maxParallel: 4
-  dependsOn:
-    - setup
-
+  variables:
+    READTHEDOCS: 'True'
   steps:
-  - template: .ci/azure-templates/install-steps.yml
-
+  - template: .ci/azure-templates/pip-steps.yml
   - script: cd docs; make
-    variables:
-      READTHEDOCS: 'True'
     displayName: 'Make docs'
-
-
 
 - job: pre_commit
   strategy:
@@ -63,33 +53,33 @@ jobs:
       Python36:
         python.version: '3.6'
     maxParallel: 4
-  dependsOn:
-    - setup
-
   steps:
-  - template: .ci/azure-templates/install-steps.yml
-
+  - template: .ci/azure-templates/pip-steps.yml
   - script: pre-commit install; pre-commit run --all-files || ( git status --short; git diff ; exit 1 );
     displayName: 'Run pre-commit check'
 
-- job: coveralls
-  dependsOn:
-    - test
-  steps:
-
-  - script: coveralls
-    displayName: 'Upload test coverage to coveralls.io'
+#- job: coveralls
+#  dependsOn:
+#    - test
+#  steps:
+#  - task: UsePythonVersion@0
+#    inputs:
+#      versionSpec: '3.6'
+#      architecture: 'x64'
+#
+#  - script: pip install coveralls
+#    displayName: 'install coveralls'
+#
+#  - script: coveralls
+#    displayName: 'Upload test coverage to coveralls.io'
 
 # - job: 'Publish'
-#   dependsOn: 'Test'
-#   pool:
-#     vmImage: 'Ubuntu-16.04'
-
+#   dependsOn:
+#   - test
 #   steps:
 #   - task: UsePythonVersion@0
 #     inputs:
 #       versionSpec: '3.x'
 #       architecture: 'x64'
-
 #   - script: python setup.py sdist
 #     displayName: 'Build sdist'
