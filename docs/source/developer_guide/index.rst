@@ -31,13 +31,16 @@ If you ever need to skip these pre-commit hooks, just use::
 Continuous integration
 ++++++++++++++++++++++
 
-``aiida-diff`` comes with a ``.travis.yml`` file for continuous integration tests on every commit using `Travis CI <http://travis-ci.org/>`_. It will:
+``aiida-diff`` comes with a ``.travis.yml`` file for continuous integration tests on every commit using `Travis CI <http://travis-ci.com/>`_. It will:
 
 #. run all tests for the ``django`` and ``sqlalchemy`` ORM
 #. build the documentation
 #. check coding style and version number (not required to pass by default)
 
 Just enable Travis builds for the ``aiida-diff`` repository in your Travis account. 
+
+``aiida-diff`` also includes an ``azure-pipelines.yml`` file for continuous integration tests using `Azure Pipelines <https://azure.microsoft.com/en-us/services/devops/pipelines/>`_.
+
 
 Online documentation
 ++++++++++++++++++++
