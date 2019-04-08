@@ -34,37 +34,30 @@ class DiffCalculation(CalcJob):
         """
         super(DiffCalculation, cls).define(spec)
 
-        spec.input(
-            'metadata.options.parser_name',
-            valid_type=six.string_types,
-            default=cls._DEFAULT_PARSER)
-        spec.input(
-            'metadata.options.output_filename',
-            valid_type=six.string_types,
-            default=cls._OUTPUT_FILE_NAME)
+        spec.input('metadata.options.parser_name',
+                   valid_type=six.string_types,
+                   default=cls._DEFAULT_PARSER)
+        spec.input('metadata.options.output_filename',
+                   valid_type=six.string_types,
+                   default=cls._OUTPUT_FILE_NAME)
 
-        spec.input(
-            'metadata.options.parser_name',
-            valid_type=six.string_types,
-            default=cls._DEFAULT_PARSER)
+        spec.input('metadata.options.parser_name',
+                   valid_type=six.string_types,
+                   default=cls._DEFAULT_PARSER)
 
-        spec.input(
-            'parameters',
-            valid_type=DiffParameters,
-            help='Command line parameters for diff')
-        spec.input(
-            'file1',
-            valid_type=SinglefileData,
-            help='First file to be compared.')
-        spec.input(
-            'file2',
-            valid_type=SinglefileData,
-            help='Second file to be compared.')
+        spec.input('parameters',
+                   valid_type=DiffParameters,
+                   help='Command line parameters for diff')
+        spec.input('file1',
+                   valid_type=SinglefileData,
+                   help='First file to be compared.')
+        spec.input('file2',
+                   valid_type=SinglefileData,
+                   help='Second file to be compared.')
 
-        spec.output(
-            'diff',
-            valid_type=SinglefileData,
-            help='diff between file1 and file2.')
+        spec.output('diff',
+                    valid_type=SinglefileData,
+                    help='diff between file1 and file2.')
 
     def prepare_for_submission(self, folder):
         """

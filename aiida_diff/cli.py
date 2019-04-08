@@ -44,11 +44,10 @@ def list_():  # pylint: disable=redefined-builtin
 
 @data_cli.command('export')
 @click.argument('node', metavar='IDENTIFIER', type=DataParamType())
-@click.option(
-    '--outfile',
-    '-o',
-    type=click.Path(dir_okay=False),
-    help='Write output to file (default: print to stdout).')
+@click.option('--outfile',
+              '-o',
+              type=click.Path(dir_okay=False),
+              help='Write output to file (default: print to stdout).')
 @decorators.with_dbenv()
 def export(node, outfile):
     """Export a DiffParameters node, identified by PK, UUID or label, to plain text"""

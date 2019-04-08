@@ -27,5 +27,5 @@ class TestDataCli(PluginTestCase):
         """Test whether 'verdi data diff export' can be reached"""
         from aiida_diff.cli import export
 
-        self.runner.invoke(
-            export, [str(self.parameters.pk)], catch_exceptions=False)
+        self.runner.invoke(export, [str(self.parameters.pk)],
+                           catch_exceptions=False)
