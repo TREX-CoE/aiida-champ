@@ -6,7 +6,11 @@
     "url": "https://github.com/aiidateam/aiida-diff",
     "license": "MIT",
     "classifiers": [
-        "Programming Language :: Python"
+        "Programming Language :: Python",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Frameworks :: AiiDA"
     ],
     "version": "1.0.0a1",
     "entry_points": {

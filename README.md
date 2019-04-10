@@ -29,10 +29,10 @@ intended to help developers get started with their AiiDA plugins.
 
  * `DiffParameters` dictionaries are validated using [voluptuous](https://github.com/alecthomas/voluptuous).
    Find out about supported options:
-  ```python
-  DiffParameters = DataFactory('diff')
-  print(DiffParameters.schema.schema)
-  ```
+   ```python
+   DiffParameters = DataFactory('diff')
+   print(DiffParameters.schema.schema)
+   ```
 
 ## Installation
 
@@ -70,7 +70,7 @@ pre-commit install  # install pre-commit hooks
 pytest -v  # discover and run all tests
 ```
 
-See the [developer guid](https://aiida-diff.readthedocs.io/en/latest/developer_guide/index.html) for more information.
+See the [developer guide](http://aiida-diff.readthedocs.io/en/latest/developer_guide/index.html) for more information.
 
 ## License
 

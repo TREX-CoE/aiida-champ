@@ -41,7 +41,6 @@ Just enable Travis builds for the ``aiida-diff`` repository in your Travis accou
 
 ``aiida-diff`` also includes an ``azure-pipelines.yml`` file for continuous integration tests using `Azure Pipelines <https://azure.microsoft.com/en-us/services/devops/pipelines/>`_.
 
-
 Online documentation
 ++++++++++++++++++++
 
