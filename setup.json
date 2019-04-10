@@ -10,7 +10,7 @@
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
-        "Frameworks :: AiiDA"
+        "Framework :: AiiDA"
     ],
     "version": "1.0.0a1",
     "entry_points": {
