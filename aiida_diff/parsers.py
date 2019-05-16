@@ -58,7 +58,7 @@ class DiffParser(Parser):
         # Use something like this to loop over multiple output files
         for fname, link in zip(output_files, output_links):
 
-            with output_folder.open(fname) as handle:
+            with output_folder.open(fname, 'rb') as handle:
                 node = SinglefileData(file=handle)
             self.out(link, node)
 

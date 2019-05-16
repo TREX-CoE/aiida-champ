@@ -25,21 +25,7 @@ import aiida_diff
 # Enable rtd mode via `export READTHEDOCS=True`
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if on_rtd:
-    # Back-end settings for readthedocs online documentation -
-    # we don't want to create a profile there
-    # NOTE: There can be no calls to load_dbenv() before this
-
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'rtd_settings'
-    sys.path.append(os.path.split(__file__)[0])  # to find rtd_settings.py
-    from aiida.backends import settings
-    settings.IN_DOC_MODE = True
-    settings.IN_RT_DOC_MODE = True
-    settings.BACKEND = "django"
-    settings.AIIDADB_PROFILE = "default"
-
-else:
-    # import and set the theme if we're building docs locally
+if not on_rtd:  # only import and set the theme if we're building docs locally
     try:
         import sphinx_rtd_theme
         html_theme = 'sphinx_rtd_theme'
@@ -47,13 +33,17 @@ else:
     except ImportError:
         # No sphinx_rtd_theme installed
         pass
-    from aiida.backends import settings
-    settings.IN_DOC_MODE = True
-    # Load the dbenv. The backend should be fixed before compiling the
-    # documentation.
-    from aiida.backends.utils import load_dbenv, is_dbenv_loaded
-    if not is_dbenv_loaded():
-        load_dbenv()
+    # Load the database environment by first loading the profile and then loading the backend through the manager
+    from aiida.manage.configuration import get_config, load_profile
+    from aiida.manage.manager import get_manager
+    config = get_config()
+    load_profile(config.default_profile_name)
+    get_manager().get_backend()
+else:
+    # Back-end settings for readthedocs online documentation.
+    from aiida.manage import configuration
+    configuration.IN_RT_DOC_MODE = True
+    configuration.BACKEND = "django"
 
 # -- General configuration ------------------------------------------------
 
