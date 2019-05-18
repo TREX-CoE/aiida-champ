@@ -24,6 +24,11 @@ class DiffParser(Parser):
     def __init__(self, node):
         """
         Initialize Parser instance
+
+        Checks that the ProcessNode being passed was produced by a DiffCalculation.
+
+        :param node: ProcessNode of calculation
+        :param type node: :class:`aiida.orm.ProcessNode`
         """
         super(DiffParser, self).__init__(node)
         if not issubclass(node.process_class, DiffCalculation):

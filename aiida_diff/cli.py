@@ -50,7 +50,7 @@ def list_():  # pylint: disable=redefined-builtin
               help='Write output to file (default: print to stdout).')
 @decorators.with_dbenv()
 def export(node, outfile):
-    """Export a DiffParameters node, identified by PK, UUID or label, to plain text"""
+    """Export a DiffParameters node (identified by PK, UUID or label) to plain text."""
     string = str(node)
 
     if outfile:

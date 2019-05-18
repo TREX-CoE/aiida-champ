@@ -5,7 +5,11 @@
 
 # aiida-diff
 
-AiiDA demo plugin that computes the difference between two files.
+AiiDA demo plugin that computes the difference between two files using the `diff` executable:
+
+```
+diff file1 file2 > output_file
+```
 
 This plugin is the default output of the 
 [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter),
