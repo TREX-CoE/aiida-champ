@@ -6,13 +6,13 @@ Usage: verdi run submit.py
 from __future__ import absolute_import
 from __future__ import print_function
 import os
-import aiida_diff.tests as tests
+from aiida_diff import tests, helpers
 from aiida.plugins import DataFactory, CalculationFactory
 from aiida.engine import run
 
 # get code
-computer = tests.get_computer()
-code = tests.get_code(entry_point='diff', computer=computer)
+computer = helpers.get_computer()
+code = helpers.get_code(entry_point='diff', computer=computer)
 
 # Prepare input parameters
 DiffParameters = DataFactory('diff')
@@ -25,22 +25,12 @@ file2 = SinglefileData(
     file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
 
 # set up calculation
-options = {
-    "resources": {
-        "num_machines": 1,
-        "num_mpiprocs_per_machine": 1,
-    },
-    "max_wallclock_seconds": 30,
-}
-
 inputs = {
     'code': code,
     'parameters': parameters,
     'file1': file1,
     'file2': file2,
     'metadata': {
-        'options': options,
-        'label': "aiida_diff test",
         'description': "Test job submission with the aiida_diff plugin",
     },
 }

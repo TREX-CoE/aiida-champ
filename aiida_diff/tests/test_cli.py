@@ -18,8 +18,8 @@ class TestDataCli(PluginTestCase):
         self.runner = CliRunner()
 
     def test_data_diff_list(self):
-        """Test 'verdi data diff list' 
-        
+        """Test 'verdi data diff list'
+
         Tests that it can be reached and that it lists the node we have set up.
         """
         from aiida_diff.cli import list_

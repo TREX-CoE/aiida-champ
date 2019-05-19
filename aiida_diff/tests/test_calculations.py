@@ -5,20 +5,14 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 import os
-import aiida_diff.tests as tests
-import pytest
+from aiida_diff import tests
 
 
-@pytest.mark.process_execution
-def test_process(new_workdir):  # pylint: disable=too-many-locals
+def test_process(aiida_code):
     """Test running a calculation
     note this does not test that the expected outputs are created of output parsing"""
     from aiida.plugins import DataFactory, CalculationFactory
     from aiida.engine import run
-
-    # get code
-    computer = tests.get_computer(workdir=new_workdir)
-    code = tests.get_code(entry_point='diff', computer=computer)
 
     # Prepare input parameters
     DiffParameters = DataFactory('diff')
@@ -31,23 +25,15 @@ def test_process(new_workdir):  # pylint: disable=too-many-locals
         file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
 
     # set up calculation
-    options = {
-        "resources": {
-            "num_machines": 1,
-            "num_mpiprocs_per_machine": 1,
-        },
-        "max_wallclock_seconds": 30,
-    }
-
     inputs = {
-        'code': code,
+        'code': aiida_code,
         'parameters': parameters,
         'file1': file1,
         'file2': file2,
         'metadata': {
-            'options': options,
-            'label': "aiida_diff test",
-            'description': "Test job submission with the aiida_diff plugin",
+            'options': {
+                'max_wallclock_seconds': 30
+            },
         },
     }
 
