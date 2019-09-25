@@ -18,9 +18,6 @@ from aiida.cmdline.params.types import DataParamType
 @verdi_data.group('diff')
 def data_cli():
     """Command line interface for aiida-diff"""
-    pass
-
-
 @data_cli.command('list')
 @decorators.with_dbenv()
 def list_():  # pylint: disable=redefined-builtin

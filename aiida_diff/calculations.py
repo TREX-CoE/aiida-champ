@@ -21,7 +21,6 @@ class DiffCalculation(CalcJob):
 
     Simple AiiDA plugin wrapper for 'diffing' two files.
     """
-
     @classmethod
     def define(cls, spec):
         """Define inputs and outputs of the calculation."""

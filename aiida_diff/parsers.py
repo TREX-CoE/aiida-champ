@@ -17,7 +17,6 @@ class DiffParser(Parser):
     """
     Parser class for parsing output of calculation.
     """
-
     def __init__(self, node):
         """
         Initialize Parser instance
