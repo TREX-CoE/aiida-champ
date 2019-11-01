@@ -8,7 +8,7 @@ import os
 from aiida_diff import tests
 
 
-def test_process(aiida_code):
+def test_process(diff_code):
     """Test running a calculation
     note this does not test that the expected outputs are created of output parsing"""
     from aiida.plugins import DataFactory, CalculationFactory
@@ -26,7 +26,7 @@ def test_process(aiida_code):
 
     # set up calculation
     inputs = {
-        'code': aiida_code,
+        'code': diff_code,
         'parameters': parameters,
         'file1': file1,
         'file2': file2,
