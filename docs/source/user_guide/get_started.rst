@@ -35,3 +35,8 @@ If you have already set up your own aiida_diff code using
 
     diff-submit  # uses aiida_diff.cli
 
+Available calculations
+++++++++++++++++++++++
+
+.. aiida-calcjob:: DiffCalculation
+    :module: aiida_diff.calculations
