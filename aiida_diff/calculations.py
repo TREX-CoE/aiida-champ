@@ -3,10 +3,6 @@ Calculations provided by aiida_diff.
 
 Register calculations via the "aiida.calculations" entry point in setup.json.
 """
-from __future__ import absolute_import
-
-import six
-
 from aiida.common import datastructures
 from aiida.engine import CalcJob
 from aiida.orm import SinglefileData
@@ -26,9 +22,16 @@ class DiffCalculation(CalcJob):
         """Define inputs and outputs of the calculation."""
         # yapf: disable
         super(DiffCalculation, cls).define(spec)
-        spec.input('metadata.options.resources', valid_type=dict, default={'num_machines': 1, 'num_mpiprocs_per_machine': 1})
-        spec.input('metadata.options.parser_name', valid_type=six.string_types, default='diff')
-        spec.input('metadata.options.output_filename', valid_type=six.string_types, default='patch.diff')
+
+        # set default values for AiiDA options
+        spec.inputs['metadata']['options']['resources'].default = {
+                'num_machines': 1,
+                'num_mpiprocs_per_machine': 1,
+                }
+        spec.inputs['metadata']['options']['parser_name'].default = 'diff'
+
+        # new ports
+        spec.input('metadata.options.output_filename', valid_type=str, default='patch.diff')
         spec.input('parameters', valid_type=DiffParameters, help='Command line parameters for diff')
         spec.input('file1', valid_type=SinglefileData, help='First file to be compared.')
         spec.input('file2', valid_type=SinglefileData, help='Second file to be compared.')

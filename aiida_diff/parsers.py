@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
 """
 Parsers provided by aiida_diff.
 
 Register parsers via the "aiida.parsers" entry point in setup.json.
 """
-from __future__ import absolute_import
-
 from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
