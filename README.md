@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/aiidateam/aiida-diff/workflows/ci/badge.svg?branch=master)](https://travis-ci.org/aiidateam/aiida-diff/actions)
+[![Build Status](https://github.com/aiidateam/aiida-diff/workflows/ci/badge.svg?branch=master)](https://github.com/aiidateam/aiida-diff/actions)
 [![Coverage Status](https://coveralls.io/repos/github/aiidateam/aiida-diff/badge.svg?branch=master)](https://coveralls.io/github/aiidateam/aiida-diff?branch=master)
 [![Docs status](https://readthedocs.org/projects/aiida-diff/badge)](http://aiida-diff.readthedocs.io/)
 [![PyPI version](https://badge.fury.io/py/aiida-diff.svg)](https://badge.fury.io/py/aiida-diff)
@@ -18,8 +18,9 @@ Plugins templated using the plugin cutter
 * include basic regression tests using the [pytest](https://docs.pytest.org/en/latest/) framework ( (submitting a calculation, ...)
 * can be directly pip-installed (and are prepared for submisson to [PyPI](https://pypi.org/)
 * include a documentation template ready for [Read the Docs](http://aiida-diff.readthedocs.io/en/latest/)
-* come with [Github Actions](https://github.com/features/actions) configuration - enable it to run tests and check test coverage at every commit
 * come with pre-commit hooks that sanitize coding style and check for syntax errors - enable via `pre-commit install`
+* come with [Github Actions](https://github.com/features/actions) configuration - enable it to run tests and check test coverage at every commit
+* come with automatic deployment to PyPI - just generate a [PyPI API token](https://pypi.org/help/#apitoken) for your PyPI account and add it to the `pypi_token` secret of your github repository
 
 For more information on how to take advantage of these features,
 see the [developer guide](https://aiida-diff.readthedocs.io/en/latest/developer_guide) of your plugin.
