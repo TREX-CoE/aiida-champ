@@ -3,11 +3,13 @@
 
 Usage: ./example_01.py
 """
-import os
-from aiida_diff import tests, helpers
+from os import path
+from aiida_diff import helpers
 from aiida import cmdline, engine
 from aiida.plugins import DataFactory, CalculationFactory
 import click
+
+INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
 
 
 def test_run(diff_code):
@@ -25,10 +27,8 @@ def test_run(diff_code):
     parameters = DiffParameters({'ignore-case': True})
 
     SinglefileData = DataFactory('singlefile')
-    file1 = SinglefileData(
-        file=os.path.join(tests.TEST_DIR, "input_files", 'file1.txt'))
-    file2 = SinglefileData(
-        file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
+    file1 = SinglefileData(file=path.join(INPUT_DIR, 'file1.txt'))
+    file2 = SinglefileData(file=path.join(INPUT_DIR, 'file2.txt'))
 
     # set up calculation
     inputs = {

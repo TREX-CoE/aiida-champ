@@ -2,7 +2,7 @@
 
 """
 import os
-from aiida_diff import tests
+from . import TEST_DIR
 
 
 def test_process(diff_code):
@@ -17,9 +17,9 @@ def test_process(diff_code):
 
     from aiida.orm import SinglefileData
     file1 = SinglefileData(
-        file=os.path.join(tests.TEST_DIR, "input_files", 'file1.txt'))
+        file=os.path.join(TEST_DIR, "input_files", 'file1.txt'))
     file2 = SinglefileData(
-        file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
+        file=os.path.join(TEST_DIR, "input_files", 'file2.txt'))
 
     # set up calculation
     inputs = {
