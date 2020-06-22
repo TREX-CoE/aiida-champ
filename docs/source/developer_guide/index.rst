@@ -37,14 +37,38 @@ Continuous integration
 #. build the documentation
 #. check coding style and version number (not required to pass by default)
 
-Online documentation
-++++++++++++++++++++
+Building the documentation
+++++++++++++++++++++++++++
 
-The documentation of ``aiida-diff``
-is ready for `ReadTheDocs <https://readthedocs.org/>`_:
+ #. Install the ``docs`` extra::
 
-Simply add the ``aiida-diff`` repository on your RTD profile, preferably using ``aiida-diff`` as the project name - that's it!
+        pip install -e .[docs]
 
+ #. Edit the individual documentation pages::
+
+        docs/source/index.rst
+        docs/source/developer_guide/index.rst
+        docs/source/user_guide/index.rst
+        docs/source/user_guide/get_started.rst
+        docs/source/user_guide/tutorial.rst
+
+ #. Use `Sphinx`_ to generate the html documentation::
+
+        cd docs
+        make
+
+Check the result by opening ``build/html/index.html`` in your browser.
+
+Publishing the documentation
+++++++++++++++++++++++++++++
+
+Once you're happy with your documentation, it's easy to host it online on ReadTheDocs_:
+
+ #. Create an account on ReadTheDocs_
+
+ #. Import your ``aiida-diff`` repository (preferably using ``aiida-diff`` as the project name)
+
+The documentation is now available at `aiida-diff.readthedocs.io <http://aiida-diff.readthedocs.io/>`_.
 
 PyPI release
 ++++++++++++
@@ -62,3 +86,11 @@ After this, you (and everyone else) should be able to::
 
 You can also enable *automatic* deployment of git tags to the python package index:
 simply generate a `PyPI API token <https://pypi.org/help/#apitoken>`_ for your PyPI account and add it as a secret to your GitHub repository under the name ``pypi_token`` (Go to Settings -> Secrets).
+
+.. note:: 
+
+   When updating the plugin package to a new version, remember to update the version number both in ``setup.json`` and ``aiida_diff/__init__.py``.
+
+
+.. _ReadTheDocs: https://readthedocs.org/
+.. _Sphinx: https://www.sphinx-doc.org/en/master/
