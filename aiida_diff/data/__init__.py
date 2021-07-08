@@ -7,8 +7,8 @@ Register data types via the "aiida.data" entry point in setup.json.
 
 # You can directly use or subclass aiida.orm.data.Data
 # or any other data type listed under 'verdi data'
-from aiida.orm import Dict
 from voluptuous import Schema, Optional
+from aiida.orm import Dict
 
 # A subset of diff's command line options
 cmdline_options = {
@@ -20,11 +20,11 @@ cmdline_options = {
 }
 
 
-class DiffParameters(Dict):
+class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
     """
     Command line options for diff.
 
-    This class represents a python dictionary used to 
+    This class represents a python dictionary used to
     pass command line options to the executable.
     """
 
@@ -43,9 +43,9 @@ class DiffParameters(Dict):
 
         """
         dict = self.validate(dict)
-        super(DiffParameters, self).__init__(dict=dict, **kwargs)
+        super().__init__(dict=dict, **kwargs)
 
-    def validate(self, parameters_dict):
+    def validate(self, parameters_dict):  # pylint: disable=no-self-use
         """Validate command line options.
 
         Uses the voluptuous package for validation. Find out about allowed keys using::
@@ -89,6 +89,6 @@ class DiffParameters(Dict):
             {'ignore-case': True}
 
         """
-        string = super(DiffParameters, self).__str__()
-        string += "\n" + str(self.get_dict())
+        string = super().__str__()
+        string += '\n' + str(self.get_dict())
         return string

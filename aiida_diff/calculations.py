@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Calculations provided by aiida_diff.
 
@@ -21,13 +22,13 @@ class DiffCalculation(CalcJob):
     def define(cls, spec):
         """Define inputs and outputs of the calculation."""
         # yapf: disable
-        super(DiffCalculation, cls).define(spec)
+        super().define(spec)
 
         # set default values for AiiDA options
         spec.inputs['metadata']['options']['resources'].default = {
-                'num_machines': 1,
-                'num_mpiprocs_per_machine': 1,
-                }
+            'num_machines': 1,
+            'num_mpiprocs_per_machine': 1,
+        }
         spec.inputs['metadata']['options']['parser_name'].default = 'diff'
 
         # new ports
@@ -37,15 +38,15 @@ class DiffCalculation(CalcJob):
         spec.input('file2', valid_type=SinglefileData, help='Second file to be compared.')
         spec.output('diff', valid_type=SinglefileData, help='diff between file1 and file2.')
 
-        spec.exit_code(100, 'ERROR_MISSING_OUTPUT_FILES', message='Calculation did not produce all expected output files.')
+        spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES', message='Calculation did not produce all expected output files.')
 
 
     def prepare_for_submission(self, folder):
         """
         Create input files.
 
-        :param folder: an `aiida.common.folders.Folder` where the plugin should temporarily place all files needed by
-            the calculation.
+        :param folder: an `aiida.common.folders.Folder` where the plugin should temporarily place all files
+            needed by the calculation.
         :return: `aiida.common.datastructures.CalcInfo` instance
         """
         codeinfo = datastructures.CodeInfo()

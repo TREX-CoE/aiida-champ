@@ -119,5 +119,3 @@ See the [developer guide](http://aiida-diff.readthedocs.io/en/latest/developer_g
 ## License
 
 MIT
-
-

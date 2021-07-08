@@ -1,13 +1,14 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Run a test calculation on localhost.
 
 Usage: ./example_01.py
 """
 from os import path
-from aiida_diff import helpers
+import click
 from aiida import cmdline, engine
 from aiida.plugins import DataFactory, CalculationFactory
-import click
+from aiida_diff import helpers
 
 INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
 
@@ -37,7 +38,7 @@ def test_run(diff_code):
         'file1': file1,
         'file2': file2,
         'metadata': {
-            'description': "Test job submission with the aiida_diff plugin",
+            'description': 'Test job submission with the aiida_diff plugin',
         },
     }
 
@@ -47,7 +48,7 @@ def test_run(diff_code):
     result = engine.run(CalculationFactory('diff'), **inputs)
 
     computed_diff = result['diff'].get_content()
-    print("Computed diff between files: \n{}".format(computed_diff))
+    print('Computed diff between files: \n{}'.format(computed_diff))
 
 
 @click.command()
