@@ -58,15 +58,13 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
         """
         return DiffParameters.schema(parameters_dict)
 
-    def cmdline_params(self, file1_name, file2_name):
+    def cmdline_params(self, file1_name):
         """Synthesize command line parameters.
 
         e.g. [ '--ignore-case', 'filename1', 'filename2']
 
         :param file_name1: Name of first file
         :param type file_name1: str
-        :param file_name2: Name of second file
-        :param type file_name2: str
 
         """
         parameters = []
@@ -76,7 +74,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
             if pm_dict[k]:
                 parameters += ['--' + k]
 
-        parameters += [file1_name, file2_name]
+        parameters += [' -i ' + file1_name]
 
         return [str(p) for p in parameters]
 

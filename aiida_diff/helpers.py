@@ -16,7 +16,7 @@ from aiida.common.exceptions import NotExistent
 LOCALHOST_NAME = 'localhost-test'
 
 executables = {
-    'diff': 'diff',
+    'vmc_mov1': 'vmc_mov1',
 }
 
 
