@@ -15,29 +15,26 @@ def test_process(diff_code):
     note this does not test that the expected outputs are created of output parsing"""
 
     # Prepare input parameters
-    DiffParameters = DataFactory('diff')
-    parameters = DiffParameters({'ignore-case': True})
+    DiffParameters = DataFactory('vmc_mov1')
+    parameters = DiffParameters({})
 
     file1 = SinglefileData(
-        file=os.path.join(TEST_DIR, 'input_files', 'file1.txt'))
-    file2 = SinglefileData(
-        file=os.path.join(TEST_DIR, 'input_files', 'file2.txt'))
+        file=os.path.join(TEST_DIR, 'input_files', 'vmc.inp'))
 
     # set up calculation
     inputs = {
         'code': diff_code,
         'parameters': parameters,
         'file1': file1,
-        'file2': file2,
         'metadata': {
             'options': {
-                'max_wallclock_seconds': 30
+                'max_wallclock_seconds': 300
             },
         },
     }
 
-    result = run(CalculationFactory('diff'), **inputs)
-    computed_diff = result['diff'].get_content()
+    result = run(CalculationFactory('vmc_mov1'), **inputs)
+    computed_diff = result['vmc_mov1'].get_content()
 
-    assert 'content1' in computed_diff
-    assert 'content2' in computed_diff
+    # assert 'content1' in computed_diff
+    # assert 'content2' in computed_diff
