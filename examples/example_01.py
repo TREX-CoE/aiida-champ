@@ -53,7 +53,7 @@ def test_run(diff_code):
     result = engine.run(CalculationFactory('vmc_mov1'), **inputs)
 
     print ("results ", result)
-
+    print ("results vmc mov1 ", result['vmc_mov1'])
     computed_diff = result['vmc_mov1'].get_content()
     print('Computed diff between files: \n{}'.format(computed_diff))
 

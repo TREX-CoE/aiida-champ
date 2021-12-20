@@ -75,7 +75,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
                 parameters += ['--' + k]
 
         parameters += [' -i ' + file1_name]
-
+        print ("from parameters fnction", [str(p) for p in parameters])
         return [str(p) for p in parameters]
 
     def __str__(self):
