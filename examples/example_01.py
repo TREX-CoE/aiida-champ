@@ -48,14 +48,16 @@ def test_run(diff_code):
 
     print ("Inputs dict", inputs)
     # Note: in order to submit your calculation to the aiida daemon, do:
-    # from aiida.engine import submit
-    # future = submit(CalculationFactory('diff'), **inputs)
+    #from aiida.engine import submit
+    #future = submit(CalculationFactory('vmc_mov1'), **inputs)
     result = engine.run(CalculationFactory('vmc_mov1'), **inputs)
-
-    print ("results ", result)
-    print ("results vmc mov1 ", result['vmc_mov1'])
-    computed_diff = result['vmc_mov1'].get_content()
-    print('Computed diff between files: \n{}'.format(computed_diff))
+    #print ("results from submit ", future)
+    # print ("results from submit output file ", future['output_filename'])
+    print ("results from submit calc ", result['remote_folder'])
+    # print ("results ", result)
+    # print ("results vmc mov1 ", result['vmc_mov1'])
+    # computed_diff = result['vmc_mov1'].get_content()
+    # print('Computed diff between files: \n{}'.format(computed_diff))
 
 
 @click.command()

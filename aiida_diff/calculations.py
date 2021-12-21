@@ -6,7 +6,7 @@ Register calculations via the "aiida.calculations" entry point in setup.json.
 """
 from aiida.common import datastructures
 from aiida.engine import CalcJob
-from aiida.orm import SinglefileData
+from aiida.orm import SinglefileData, RemoteData
 from aiida.common.datastructures import CalcInfo, CodeInfo
 from aiida.common.folders import Folder
 from aiida.plugins import DataFactory
@@ -40,8 +40,8 @@ class DiffCalculation(CalcJob):
         spec.input('metadata.options.output_filename', valid_type=str, default='vmc.out')
         spec.input('parameters', valid_type=DiffParameters, help='Command line parameters for diff')
         spec.input('file1', valid_type=SinglefileData, help='First file to be compared.')
-        spec.output('vmc_mov1', valid_type=SinglefileData, help='diff between file1 and file2.')
-        # spec.input('vmc_mov1', valid_type=orm.Code, help='The code being run')
+        spec.output('output_champ', valid_type=RemoteData, help='diff between file1 and file2.')
+        spec.input('code', valid_type=orm.Code, help='The code being run')
 
         spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES', message='Calculation did not produce all expected output files.')
 

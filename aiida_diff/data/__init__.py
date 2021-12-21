@@ -22,7 +22,7 @@ cmdline_options = {
 
 class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
     """
-    Command line options for diff.
+    Command line options for aiida-champ.
 
     This class represents a python dictionary used to
     pass command line options to the executable.
@@ -36,7 +36,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
         """
         Constructor for the data class
 
-        Usage: ``DiffParameters(dict{'ignore-case': True})``
+        Usage: ``CHAMPParameters(dict{'ignore-case': True})``
 
         :param parameters_dict: dictionary with commandline parameters
         :param type parameters_dict: dict
@@ -50,7 +50,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
 
         Uses the voluptuous package for validation. Find out about allowed keys using::
 
-            print(DiffParameters).schema.schema
+            print(CHAMPParameters).schema.schema
 
         :param parameters_dict: dictionary with commandline parameters
         :param type parameters_dict: dict
