@@ -54,7 +54,7 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
 
         computer = Computer(
             label=name,
-            description='localhost computer set up by aiida_diff tests',
+            description='localhost computer set up by aiida_champ tests',
             hostname=name,
             workdir=workdir,
             transport_type='local',

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Command line interface (cli) for aiida_diff.
+Command line interface (cli) for aiida_champ.
 
 Register new commands either via the "console_scripts" entry point or plug them
 directly into the 'verdi' command by using AiiDA-specific entry points like
@@ -19,14 +19,14 @@ from aiida.plugins import DataFactory
 # See aiida.cmdline.data entry point in setup.json
 @verdi_data.group('vmc_mov1')
 def data_cli():
-    """Command line interface for aiida-diff"""
+    """Command line interface for aiida-champ"""
 
 
 @data_cli.command('list')
 @decorators.with_dbenv()
 def list_():  # pylint: disable=redefined-builtin
     """
-    Display all DiffParameters nodes
+    Display all CHAMPParameters nodes
     """
     DiffParameters = DataFactory('vmc_mov1')
 
