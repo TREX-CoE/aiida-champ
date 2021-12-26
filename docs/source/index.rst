@@ -2,6 +2,11 @@
     :width: 250px
     :align: center
 
+.. figure:: images/logo_champ_reduced.png
+    :width: 250px
+    :align: center
+
+
 The aiida-champ plugin for `AiiDA`_
 =====================================================
 

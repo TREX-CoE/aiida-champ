@@ -3,6 +3,8 @@
 [![Docs status](https://readthedocs.org/projects/aiida-champ/badge)](http://aiida-champ.readthedocs.io/)
 [![PyPI version](https://badge.fury.io/py/aiida-champ.svg)](https://badge.fury.io/py/aiida-champ)
 
+<img src="docs/source/images/AiiDA_transparent_logo.png" width="250">  <img src="docs/source/images/logo_champ_reduced.png" height="100">
+
 # aiida-champ
 
 AiiDA plugin that wraps the `vmc` executable of the CHAMP code for computing the total energy of a molecular system.
