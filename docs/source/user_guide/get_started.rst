@@ -38,5 +38,5 @@ If you have already set up your own aiida_champ code using
 Available calculations
 ++++++++++++++++++++++
 
-.. aiida-calcjob:: champCalculation
+.. aiida-calcjob:: CHAMPCalculation
     :module: aiida_champ.calculations

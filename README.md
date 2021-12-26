@@ -14,11 +14,11 @@ AiiDA plugin that wraps the `vmc` executable of the CHAMP code for computing the
   * [`ci.yml`](.github/workflows/ci.yml): runs tests, checks test coverage and builds documentation at every new commit
   * [`publish-on-pypi.yml`](.github/workflows/publish-on-pypi.yml): automatically deploy git tags to PyPI - just generate a [PyPI API token](https://pypi.org/help/#apitoken) for your PyPI account and add it to the `pypi_token` secret of your github repository
 * [`aiida_champ/`](aiida_champ/): The main source code of the plugin package
-  * [`data/`](aiida_champ/data/): A new `champParameters` data class, used as input to the `champCalculation` `CalcJob` class
-  * [`calculations.py`](aiida_champ/calculations.py): A new `champCalculation` `CalcJob` class
+  * [`data/`](aiida_champ/data/): A new `CHAMPParameters` data class, used as input to the `CHAMPCalculation` `CalcJob` class
+  * [`calculations.py`](aiida_champ/calculations.py): A new `CHAMPCalculation` `CalcJob` class
   * [`cli.py`](aiida_champ/cli.py): Extensions of the `verdi data` command line interface for the `champParameters` class
   * [`helpers.py`](aiida_champ/helpers.py): Helpers for setting up an AiiDA code for `champ` automatically
-  * [`parsers.py`](aiida_champ/parsers.py): A new `Parser` for the `champCalculation`
+  * [`parsers.py`](aiida_champ/parsers.py): A new `Parser` for the `CHAMPCalculation`
 * [`docs/`](docs/): A documentation template ready for publication on [Read the Docs](http://aiida-champ.readthedocs.io/en/latest/)
 * [`examples/`](examples/): An example of how to submit a calculation using this plugin
 * [`tests/`](tests/): Basic regression tests using the [pytest](https://docs.pytest.org/en/latest/) framework (submitting a calculation, ...). Install `pip install -e .[testing]` and run `pytest`.
