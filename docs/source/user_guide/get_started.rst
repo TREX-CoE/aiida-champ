@@ -10,7 +10,7 @@ Installation
 
 Use the following commands to install the plugin::
 
-    git clone https://github.com/aiidateam/aiida-champ .
+    git clone https://github.com/neelravi/aiida-champ .
     cd aiida-champ
     pip install -e .  # also installs aiida, if missing (but not postgres)
     #pip install -e .[pre-commit,testing] # install extras for more features

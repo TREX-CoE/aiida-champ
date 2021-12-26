@@ -5,7 +5,7 @@
 The aiida-champ plugin for `AiiDA`_
 =====================================================
 
-``aiida-champ`` is available at http://github.com/aiidateam/aiida-champ
+``aiida-champ`` is available at http://github.com/neelravi/aiida-champ
 
 
 .. toctree::
