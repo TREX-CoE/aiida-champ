@@ -10,15 +10,15 @@ Installation
 
 Use the following commands to install the plugin::
 
-    git clone https://github.com/aiidateam/aiida-diff .
-    cd aiida-diff
+    git clone https://github.com/aiidateam/aiida-champ .
+    cd aiida-champ
     pip install -e .  # also installs aiida, if missing (but not postgres)
     #pip install -e .[pre-commit,testing] # install extras for more features
     verdi quicksetup  # better to set up a new profile
     verdi calculation plugins  # should now show your calclulation plugins
 
-Then use ``verdi code setup`` with the ``diff`` input plugin
-to set up an AiiDA code for aiida-diff.
+Then use ``verdi code setup`` with the ``champ`` input plugin
+to set up an AiiDA code for aiida-champ.
 
 Usage
 +++++
@@ -30,13 +30,13 @@ A quick demo of how to submit a calculation::
     verdi run test_submit.py        # submit test calculation
     verdi calculation list -a  # check status of calculation
 
-If you have already set up your own aiida_diff code using
+If you have already set up your own aiida_champ code using
 ``verdi code setup``, you may want to try the following command::
 
-    diff-submit  # uses aiida_diff.cli
+    champ-submit  # uses aiida_champ.cli
 
 Available calculations
 ++++++++++++++++++++++
 
-.. aiida-calcjob:: DiffCalculation
-    :module: aiida_diff.calculations
+.. aiida-calcjob:: champCalculation
+    :module: aiida_champ.calculations

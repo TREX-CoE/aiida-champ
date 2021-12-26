@@ -31,7 +31,7 @@ If you ever need to skip these pre-commit hooks, just use::
 Continuous integration
 ++++++++++++++++++++++
 
-``aiida-diff`` comes with a ``.github`` folder that contains continuous integration tests on every commit using `GitHub Actions <https://github.com/features/actions>`_. It will:
+``aiida-champ`` comes with a ``.github`` folder that contains continuous integration tests on every commit using `GitHub Actions <https://github.com/features/actions>`_. It will:
 
 #. run all tests for the ``django`` ORM
 #. build the documentation
@@ -66,9 +66,9 @@ Once you're happy with your documentation, it's easy to host it online on ReadTh
 
  #. Create an account on ReadTheDocs_
 
- #. Import your ``aiida-diff`` repository (preferably using ``aiida-diff`` as the project name)
+ #. Import your ``aiida-champ`` repository (preferably using ``aiida-champ`` as the project name)
 
-The documentation is now available at `aiida-diff.readthedocs.io <http://aiida-diff.readthedocs.io/>`_.
+The documentation is now available at `aiida-champ.readthedocs.io <http://aiida-champ.readthedocs.io/>`_.
 
 PyPI release
 ++++++++++++
@@ -82,7 +82,7 @@ Just register for an account and::
 
 After this, you (and everyone else) should be able to::
 
-    pip install aiida-diff
+    pip install aiida-champ
 
 You can also enable *automatic* deployment of git tags to the python package index:
 simply generate a `PyPI API token <https://pypi.org/help/#apitoken>`_ for your PyPI account and add it as a secret to your GitHub repository under the name ``pypi_token`` (Go to Settings -> Secrets).

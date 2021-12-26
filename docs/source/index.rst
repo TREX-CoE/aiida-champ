@@ -2,10 +2,10 @@
     :width: 250px
     :align: center
 
-The aiida-diff plugin for `AiiDA`_
+The aiida-champ plugin for `AiiDA`_
 =====================================================
 
-``aiida-diff`` is available at http://github.com/aiidateam/aiida-diff
+``aiida-champ`` is available at http://github.com/aiidateam/aiida-champ
 
 
 .. toctree::
@@ -13,7 +13,7 @@ The aiida-diff plugin for `AiiDA`_
 
    user_guide/index
    developer_guide/index
-   API documentation <apidoc/aiida_diff>
+   API documentation <apidoc/aiida_champ>
 
 If you use this plugin for your research, please cite the following work:
 
@@ -26,7 +26,7 @@ If you use AiiDA for your research, please cite the following work:
   for computational science*, Comp. Mat. Sci 111, 218-230 (2016);
   https://doi.org/10.1016/j.commatsci.2015.09.013; http://www.aiida.net.
 
-``aiida-diff`` is released under the MIT license.
+``aiida-champ`` is released under the MIT license.
 
 
 
