@@ -94,8 +94,8 @@ class DiffCalculation(CalcJob):
         if 'trexio' in self.inputs:
             calcinfo.local_copy_list.append(self.inputs.trexio.uuid, self.inputs.trexio.filename, self.inputs.trexio.filename)
 
-        if 'pooldir' in self.inputs:
-            calcinfo.local_copy_list.append(self.inputs.pooldir.uuid, self.inputs.pooldir.filename, self.inputs.pooldir.filename)
+        # if 'pooldir' in self.inputs:
+        #     calcinfo.local_copy_list.append(self.inputs.pooldir.uuid, self.inputs.pooldir.filename, self.inputs.pooldir.filename)
 
         calcinfo.retrieve_list = [self.metadata.options.output_filename]
 

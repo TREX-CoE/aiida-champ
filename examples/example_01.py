@@ -67,10 +67,8 @@ def test_run(diff_code):
         },
     }
 
-    print ("Inputs dict", inputs)
     # Note: in order to submit your calculation to the aiida daemon, do:
     result = engine.run(CalculationFactory('diff'), **inputs)
-    print ("Result raw", result)
     computed_diff = result['Output'].get_content()
     print('Outout of the Calculation: \n{}'.format(computed_diff))
 

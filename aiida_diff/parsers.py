@@ -28,7 +28,7 @@ class DiffParser(Parser):
         """
         super().__init__(node)
         if not issubclass(node.process_class, DiffCalculation):
-            raise exceptions.ParsingError('Can only parse CHAMPCalculation')
+            raise exceptions.ParsingError('Can only parse DiffCalculation')
 
     def parse(self, **kwargs):
         """
@@ -36,14 +36,13 @@ class DiffParser(Parser):
 
         :returns: an exit code, if parsing fails (or nothing if parsing succeeds)
         """
-        output_folder = self.retrieved
+
         output_filename = self.node.get_option('output_filename')
-        print ("output filename from parser", output_filename)
 
         # Check that folder content is as expected
         files_retrieved = self.retrieved.list_object_names()
         files_expected = [output_filename]
-        print ("files retrieved ", files_retrieved)
+
         # Note: set(A) <= set(B) checks whether A is a subset of B
         if not set(files_expected) <= set(files_retrieved):
             self.logger.error("Found files '{}', expected to find '{}'".format(
@@ -52,7 +51,7 @@ class DiffParser(Parser):
 
         # add output file
         self.logger.info("Parsing '{}'".format(output_filename))
-        with self.retrieved.open(output_filename, 'r') as handle:
+        with self.retrieved.open(output_filename, 'rb') as handle:
             output_node = SinglefileData(file=handle)
             energy = Float()
 

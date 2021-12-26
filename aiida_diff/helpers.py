@@ -26,6 +26,7 @@ def get_path_to_executable(executable):
     :rtype: str
     """
     path = shutil.which(executable)
+    print ("Path of executable is: ", path)
     if path is None:
         raise ValueError(
             "'{}' executable not found in PATH.".format(executable))
