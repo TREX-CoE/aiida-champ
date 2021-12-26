@@ -15,16 +15,16 @@
     "version": "1.2.0",
     "entry_points": {
         "aiida.data": [
-            "vmc_mov1 = aiida_diff.data:DiffParameters"
+            "diff = aiida_diff.data:DiffParameters"
         ],
         "aiida.calculations": [
-            "vmc_mov1 = aiida_diff.calculations:DiffCalculation"
+            "diff = aiida_diff.calculations:DiffCalculation"
         ],
         "aiida.parsers": [
-            "vmc_mov1 = aiida_diff.parsers:DiffParser"
+            "diff = aiida_diff.parsers:DiffParser"
         ],
         "aiida.cmdline.data": [
-            "vmc_mov1 = aiida_diff.cli:data_cli"
+            "diff = aiida_diff.cli:data_cli"
         ]
     },
     "include_package_data": true,

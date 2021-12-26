@@ -10,7 +10,7 @@ from aiida.plugins import CalculationFactory
 from aiida.common import exceptions
 from aiida.orm import SinglefileData, Float
 
-DiffCalculation = CalculationFactory('vmc_mov1')
+DiffCalculation = CalculationFactory('diff')
 
 
 class DiffParser(Parser):

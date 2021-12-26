@@ -8,8 +8,6 @@ from os import path
 import click
 from aiida import cmdline, engine
 from aiida.plugins import DataFactory, CalculationFactory
-from aiida.orm import Dict, load_code, load_computer
-from aiida.common.exceptions import NotExistent
 from aiida_diff import helpers
 
 INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
@@ -24,12 +22,7 @@ def test_run(diff_code):
     if not diff_code:
         # get code
         computer = helpers.get_computer()
-        diff_code = helpers.get_code(entry_point='vmc_mov1', computer=computer)
-
-    print ("diff code ", diff_code)
-    print ("computer ", computer)
-    diff_code = load_code('vmc_mov1@localhost-test')
-    print ("diff code after loading ", diff_code)
+        diff_code = helpers.get_code(entry_point='diff', computer=computer)
 
 
     SinglefileData = DataFactory('singlefile')
@@ -42,7 +35,6 @@ def test_run(diff_code):
 
     ecp1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.C'))
     ecp2 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.H'))
-    ecp1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.C'))
 
     orbitals = SinglefileData(file=path.join(INPUT_DIR, 'cas44.lcao'))
     determinants = SinglefileData(file=path.join(INPUT_DIR, 'cas44.det'))
@@ -53,7 +45,7 @@ def test_run(diff_code):
     numericalbasis1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD-Q.basis.C'))
     numericalbasis2 = SinglefileData(file=path.join(INPUT_DIR, 'BFD-Q.basis.H'))
 
-    print("Parameters ", parameters)
+
     # set up calculation
     inputs = {
         'code': diff_code,
@@ -78,7 +70,7 @@ def test_run(diff_code):
     print ("Inputs dict", inputs)
     # Note: in order to submit your calculation to the aiida daemon, do:
     result = engine.run(CalculationFactory('diff'), **inputs)
-
+    print ("Result raw", result)
     computed_diff = result['Output'].get_content()
     print('Outout of the Calculation: \n{}'.format(computed_diff))
 
