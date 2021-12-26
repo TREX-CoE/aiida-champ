@@ -11,7 +11,7 @@ def clear_database_auto(clear_database):  # pylint: disable=unused-argument
 
 
 @pytest.fixture(scope='function')
-def diff_code(aiida_local_code_factory):
+def champ_code(aiida_local_code_factory):
     """Get a vmc code.
     """
     return aiida_local_code_factory(executable='vmc', entry_point='CHAMP')

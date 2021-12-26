@@ -89,7 +89,7 @@ simply generate a `PyPI API token <https://pypi.org/help/#apitoken>`_ for your P
 
 .. note::
 
-   When updating the plugin package to a new version, remember to update the version number both in ``setup.json`` and ``aiida_diff/__init__.py``.
+   When updating the plugin package to a new version, remember to update the version number both in ``setup.json`` and ``aiida_champ/__init__.py``.
 
 
 .. _ReadTheDocs: https://readthedocs.org/

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Check that version numbers match.
 
-Check version number in setup.json and aiida_diff/__init__.py and make sure
+Check version number in setup.json and aiida_champ/__init__.py and make sure
 they match.
 """
 from __future__ import absolute_import
@@ -20,15 +20,15 @@ with open(SETUP_PATH) as f:
 
 # Get version from python package
 sys.path.insert(0, os.path.join(this_path, os.pardir))
-import aiida_diff  # pylint: disable=wrong-import-position
-VERSION = aiida_diff.__version__
+import aiida_champ  # pylint: disable=wrong-import-position
+VERSION = aiida_champ.__version__
 
 if VERSION != setup_content['version']:
     print('Version number mismatch detected:')
     print("Version number in '{}': {}".format(SETUP_FNAME,
                                               setup_content['version']))
     print("Version number in '{}/__init__.py': {}".format(
-        'aiida_diff', VERSION))
+        'aiida_champ', VERSION))
     sys.exit(1)
 
 # Overwrite version in setup.json
