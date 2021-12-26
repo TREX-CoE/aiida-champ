@@ -8,7 +8,7 @@ from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
 from aiida.common import exceptions
-from aiida.orm import SinglefileData
+from aiida.orm import SinglefileData, Float
 
 DiffCalculation = CalculationFactory('diff')
 
@@ -51,6 +51,17 @@ class DiffParser(Parser):
         self.logger.info("Parsing '{}'".format(output_filename))
         with self.retrieved.open(output_filename, 'rb') as handle:
             output_node = SinglefileData(file=handle)
-        self.out('diff', output_node)
+            energy = Float()
+
+            outputfile = handle.readlines()
+            for line in outputfile:
+                print ("PARSER lines are: ", line)
+                if 'total E =' in line:
+                    token = line.split()
+                    energy = Float(float(token[3]))
+                    print ("energy parsed from the output = {}".format(energy))
+            self.out('Energy', energy)
+
+        self.out('Output', output_node)
 
         return ExitCode(0)

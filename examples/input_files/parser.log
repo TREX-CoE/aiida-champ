@@ -1,0 +1,194 @@
+mode                         vmc_one_mpi1                                                                    
+title                        butadiene cas44 vmc calculation with 20 dets and 12 csf                         
+pool                         ./pool/                                                                         
+pseudopot                    BFD                                                                             
+basis                        BFD-Q                                                                           
+nforce                       1                             # default value
+nwftype                      1                             # default value
+iperiodic                    0                             # default value
+ibasis                       1                             # default value
+seed                         1837465927472523              # default value
+ipr                          -1                            # default value
+unit                         Hartrees                      # default value
+mass                         .5000000000000000             # default value
+scalecoef                    1.000000000000000             # default value
+i3dgrid                      0                             # default value
+i3dsplorb                    0                             # default value
+i3dlagorb                    0                             # default value
+i3ddensity                   0                             # default value
+backend                      hdf5                          # default value
+nelec                        22
+nup                          11
+newghostype                  0                             # default value
+nghostcent                   0                             # default value
+ijas                         4                             # default value
+isc                          2                             # default value
+nspin1                       1                             # default value
+nspin2                       1                             # default value
+ifock                        0                             # default value
+ianalyt_lap                  1                             # default value
+iforce_analy                 0                             # default value
+iuse_zmat                    0                             # default value
+izvzb                        0                             # default value
+iroot_geo                    0                             # default value
+delgrdxyz                    .1000000000000000E-02         # default value
+igrdtype                     1                             # default value
+ngradnts                     0                             # default value
+delgrdbl                     .1000000000000000E-02         # default value
+delgrdba                     .1000000000000000E-01         # default value
+delgrdda                     .1000000000000000E-01         # default value
+igrdtype                     2                             # default value
+ngradnts                     0                             # default value
+iguiding                     0                             # default value
+iefficiency                  0                             # default value
+iefield                      0                             # default value
+imetro                       6                             # default value
+node_cutoff                  0                             # default value
+enode_cutoff                 .1000000000000000E-06         # default value
+delta                        1.000000000000000             # default value
+deltar                       5.000000000000000             # default value
+deltat                       1.000000000000000             # default value
+fbias                        1.000000000000000             # default value
+vmc_nstep                    5
+vmc_nblk                     100
+vmc_nblkeq                   1
+nblk_max                     100                           # default value
+vmc_nconf                    1                             # default value
+vmc_nconf_new                0
+vmc_idump                    1                             # default value
+vmc_irstar                   0                             # default value
+vmc_isite                    1                             # default value
+vmc_icharged_atom            0                             # default value
+vmc_nblk_ci                  100                           # default value
+idmc                         2                             # default value
+ipq                          1                             # default value
+itau_eff                     1                             # default value
+iacc_rej                     1                             # default value
+icross                       1                             # default value
+icuspg                       0                             # default value
+idiv_v                       0                             # default value
+icut_br                      0                             # default value
+icut_e                       0                             # default value
+dmc_node_cutoff              0                             # default value
+dmc_enode_cutoff             .1000000000000000E-06         # default value
+tau                          1.000000                      # default value
+etrial                       1.000000                      # default value
+nfprod                       100                           # default value
+itausec                      1                             # default value
+icasula                      0                             # default value
+dmc_nstep                    1                             # default value
+dmc_nblk                     1                             # default value
+dmc_nblkeq                   2                             # default value
+dmc_nblk_max                 1                             # default value
+dmc_nconf                    1                             # default value
+dmc_nconf_new                1                             # default value
+dmc_idump                    1                             # default value
+dmc_irstar                   0                             # default value
+dmc_isite                    1                             # default value
+dmc_icharged_atom            0                             # default value
+dmc_nblk_ci                  1                             # default value
+ioptwf                       0                             # default value
+method                       sr_n                          # default value
+Is block optwf present?               F
+Is defined? optwf                     F
+idl_flag                     0                             # default value
+ilbfgs_flag                  0                             # default value
+ilbfgs_m                     5                             # default value
+sr_rescale                   0                             # default value
+ibeta                        -1                            # default value
+ratio                        0                             # default value
+iapprox                      0                             # default value
+ncore                        0                             # default value
+iuse_orbeigv                 0                             # default value
+ioptjas                      0                             # default value
+ioptorb                      0                             # default value
+ioptci                       0                             # default value
+no_active                    0                             # default value
+energy_tol                   .1000000000000000E-02         # default value
+dparm_norm_min               1.000000000000000             # default value
+add_diag                     .1000000000000000E-05         # default value
+nopt_iter                    6                             # default value
+micro_iter_sr                1                             # default value
+func_omega                   0                             # default value
+lin_nvec                     5                             # default value
+lin_nvecx                    160                           # default value
+lin_adiag                    .1000000000000000E-01         # default value
+lin_eps                      .1000000000000000E-02         # default value
+lin_jdav                     0                             # default value
+multiple_adiag               0                             # default value
+sr_tau                       .2000000000000000E-01         # default value
+sr_adiag                     .1000000000000000E-01         # default value
+sr_eps                       .1000000000000000E-02         # default value
+ilastvmc                     1                             # default value
+dl_mom                       .000000000000000              # default value
+dl_alg                       nag                           # default value
+ngrad_jas_blocks             0                             # default value
+isample_cmat                 1                             # default value
+save_blocks                  0                             # default value
+force_blocks                 1                             # default value
+iorbsample                   1                             # default value
+iciprt                       0                             # default value
+sample                       0                             # default value
+print                        0                             # default value
+nloc                         4                             # default value
+nquad                        6                             # default value
+nextorb                      -1                            # default value
+trexio                       default.hdf5                  # default value
+basis                        default.bas                   # default value
+molecule                     $pool/butadiene.xyz                                                             
+determinants                 cas44.det                                                                       
+symmetry                     cas44.sym                                                                       
+jastrow                      jastrow_good_b3lyp.0                                                            
+jastrow_der                  jastrow.der                                                                     
+orbitals                     cas44.lcao                                                                      
+exponents                    exponents.exp                 # default value
+pseudo                       default.psp                   # default value
+optorb_mixvirt               default.mix                   # default value
+multideterminants            default.mdet                  # default value
+forces                       default.for                   # default value
+eigenvalues                  default.eig                   # default value
+basis_num_info               $pool/BFD-Q.bfinfo                                                              
+dmatrix                      default.dmat                  # default value
+cavity_spheres               default.cav                   # default value
+gradients_zmatrix            default.gzmat                 # default value
+gradients_cartesian          default.gcart                 # default value
+modify_zmatrix               default.mzmat                 # default value
+hessian_zmatrix              default.hzmat                 # default value
+zmatrix_connection           default.zmcon                 # default value
+efield                       default.efield                # default value
+Is  load molecule defined?            T
+Is defined? pseudopot                 T
+Is  load orbitals defined?            T
+Is  load basis_num_info defin         T
+Is  load jastrow defined?             T
+Is  load jastrow_der defined?         T
+Is  load determinants defined         T
+Is block optwf present?               F
+Is defined? optwf                     F
+Is  load symmetry defined?            T
+Is  load determinants defined         T
+Is  load determinants defined         T
+Is block multideterminants pr         F
+Is  load multideterminants de         F
+Is block exponents present?           F
+Is  load exponents defined?           F
+Is block eigenvalues present?         F
+Is  load eigenvalues defined?         F
+Is defined? basis                     T
+Is block forces present?              F
+Is  load forces defined?              F
+Is block dmatrix present?             F
+Is  load dmatrix defined?             F
+#:lreal? weights                      F
+#:list? weights                       F
+#:linteger? weights                   F
+Is block optorb_mixvirt prese         F
+Is  load optorb_mixvirt defin         F
+Is block gradients_zmatrix pr         F
+Is  load gradients_zmatrix de         F
+Is block gradients_cartesian          F
+Is  load gradients_cartesian          F
+Is block zmatrix_connection p         F
+Is  load zmatrix_connection d         F
+Is block efield present?              F
+Is  load efield defined?              F

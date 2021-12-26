@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Run a test calculation on localhost.
 
-Usage: ./example_01.py
+Usage: python example_01.py
 """
 from os import path
 import click
@@ -11,6 +11,7 @@ from aiida.plugins import DataFactory, CalculationFactory
 from aiida_diff import helpers
 
 INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
+POOL_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files/pool')
 
 
 def test_run(diff_code):
@@ -23,32 +24,54 @@ def test_run(diff_code):
         computer = helpers.get_computer()
         diff_code = helpers.get_code(entry_point='diff', computer=computer)
 
-    # Prepare input parameters
-    DiffParameters = DataFactory('diff')
-    parameters = DiffParameters({'ignore-case': True})
 
     SinglefileData = DataFactory('singlefile')
-    file1 = SinglefileData(file=path.join(INPUT_DIR, 'file1.txt'))
-    file2 = SinglefileData(file=path.join(INPUT_DIR, 'file2.txt'))
+    # RemoteData = DataFactory('remotedata')
+
+    filemain = SinglefileData(file=path.join(INPUT_DIR, 'vmc.inp'))
+    molecule = SinglefileData(file=path.join(INPUT_DIR, 'butadiene.xyz'))
+
+    # pooldir = RemoteData(file=POOL_DIR)
+
+    ecp1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.C'))
+    ecp2 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.H'))
+    ecp1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.C'))
+
+    orbitals = SinglefileData(file=path.join(INPUT_DIR, 'cas44.lcao'))
+    determinants = SinglefileData(file=path.join(INPUT_DIR, 'cas44.det'))
+    symmetry = SinglefileData(file=path.join(INPUT_DIR, 'cas44.sym'))
+    jastrow = SinglefileData(file=path.join(INPUT_DIR, 'jastrow_good_b3lyp.0'))
+    jastrowder = SinglefileData(file=path.join(INPUT_DIR, 'jastrow.der'))
+    numericalbasisinfo = SinglefileData(file=path.join(POOL_DIR, 'BFD-Q.bfinfo'))
+    numericalbasis1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD-Q.basis.C'))
+    numericalbasis2 = SinglefileData(file=path.join(INPUT_DIR, 'BFD-Q.basis.H'))
 
     # set up calculation
     inputs = {
         'code': diff_code,
-        'parameters': parameters,
-        'file1': file1,
-        'file2': file2,
+        'filemain': filemain,
+        'molecule': molecule,
+        # 'pooldir': pooldir,
+        'ecp1': ecp1,
+        'ecp2': ecp2,
+        'orbitals': orbitals,
+        'determinants': determinants,
+        'symmetry': symmetry,
+        'jastrow': jastrow,
+        'jastrowder': jastrowder,
+        'numericalbasisinfo': numericalbasisinfo,
+        'numericalbasis1': numericalbasis1,
+        'numericalbasis2': numericalbasis2,
         'metadata': {
             'description': 'Test job submission with the aiida_diff plugin',
         },
     }
 
     # Note: in order to submit your calculation to the aiida daemon, do:
-    # from aiida.engine import submit
-    # future = submit(CalculationFactory('diff'), **inputs)
     result = engine.run(CalculationFactory('diff'), **inputs)
 
-    computed_diff = result['diff'].get_content()
-    print('Computed diff between files: \n{}'.format(computed_diff))
+    computed_diff = result['Output'].get_content()
+    print('Outout of the Calculation: \n{}'.format(computed_diff))
 
 
 @click.command()
