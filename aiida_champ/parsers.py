@@ -10,10 +10,10 @@ from aiida.plugins import CalculationFactory
 from aiida.common import exceptions
 from aiida.orm import SinglefileData, Float
 
-DiffCalculation = CalculationFactory('diff')
+CHAMPCalculation = CalculationFactory('CHAMP')
 
 
-class DiffParser(Parser):
+class CHAMPParser(Parser):
     """
     Parser class for parsing output of calculation.
     """
@@ -21,14 +21,14 @@ class DiffParser(Parser):
         """
         Initialize Parser instance
 
-        Checks that the ProcessNode being passed was produced by a DiffCalculation.
+        Checks that the ProcessNode being passed was produced by a CHAMPCalculation.
 
         :param node: ProcessNode of calculation
         :param type node: :class:`aiida.orm.ProcessNode`
         """
         super().__init__(node)
-        if not issubclass(node.process_class, DiffCalculation):
-            raise exceptions.ParsingError('Can only parse DiffCalculation')
+        if not issubclass(node.process_class, CHAMPCalculation):
+            raise exceptions.ParsingError('Can only parse CHAMPCalculation')
 
     def parse(self, **kwargs):
         """
@@ -57,7 +57,6 @@ class DiffParser(Parser):
 
             outputfile = handle.readlines()
             for line in outputfile:
-                print ("PARSER lines are: ", line)
                 if 'total E =' in line:
                     token = line.split()
                     energy = Float(float(token[3]))

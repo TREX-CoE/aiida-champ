@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Setup script for aiida-diff"""
+"""Setup script for aiida-champ"""
 import json
 from setuptools import setup, find_packages
 
@@ -9,7 +9,7 @@ if __name__ == '__main__':
     with open('setup.json', 'r') as info:
         kwargs = json.load(info)
     setup(
-        packages=find_packages(include=['aiida_diff', 'aiida_diff.*']),
+        packages=find_packages(include=['aiida_champ', 'aiida_champ.*']),
         # this doesn't work when placed in setup.json (something to do with str type)
         package_data={
             '': ['*'],

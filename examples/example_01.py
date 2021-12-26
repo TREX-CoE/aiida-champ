@@ -8,21 +8,21 @@ from os import path
 import click
 from aiida import cmdline, engine
 from aiida.plugins import DataFactory, CalculationFactory
-from aiida_diff import helpers
+from aiida_champ import helpers
 
-INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
-POOL_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files/pool')
+INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'example01')
+POOL_DIR = path.join(path.dirname(path.realpath(__file__)), 'example01/pool')
 
 
-def test_run(diff_code):
+def test_run(champ_code):
     """Run a calculation on the localhost computer.
 
     Uses test helpers to create AiiDA Code on the fly.
     """
-    if not diff_code:
+    if not champ_code:
         # get code
         computer = helpers.get_computer()
-        diff_code = helpers.get_code(entry_point='diff', computer=computer)
+        champ_code = helpers.get_code(entry_point='CHAMP', computer=computer)
 
 
     SinglefileData = DataFactory('singlefile')
@@ -48,7 +48,7 @@ def test_run(diff_code):
 
     # set up calculation
     inputs = {
-        'code': diff_code,
+        'code': champ_code,
         'filemain': filemain,
         'molecule': molecule,
         # 'pooldir': pooldir,
@@ -63,12 +63,12 @@ def test_run(diff_code):
         'numericalbasis1': numericalbasis1,
         'numericalbasis2': numericalbasis2,
         'metadata': {
-            'description': 'Test job submission with the aiida_diff plugin',
+            'description': 'Sample job submission with the aiida_champ plugin example 01',
         },
     }
 
     # Note: in order to submit your calculation to the aiida daemon, do:
-    result = engine.run(CalculationFactory('diff'), **inputs)
+    result = engine.run(CalculationFactory('CHAMP'), **inputs)
     computed_diff = result['Output'].get_content()
     print('Outout of the Calculation: \n{}'.format(computed_diff))
 
@@ -79,9 +79,9 @@ def test_run(diff_code):
 def cli(code):
     """Run example.
 
-    Example usage: $ ./example_01.py --code diff@localhost
+    Example usage: $ python example_01.py --code CHAMP@localhost
 
-    Alternative (creates diff@localhost-test code): $ ./example_01.py
+    Alternative (creates CHAMP@localhost-test code): $ python example_01.py
 
     Help: $ ./example_01.py --help
     """

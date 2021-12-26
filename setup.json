@@ -1,9 +1,9 @@
 {
-    "name": "aiida-diff",
-    "author": "The AiiDA Team",
-    "author_email": "",
-    "description": "AiiDA demo plugin that wraps the `diff` executable for computing the difference between two files.",
-    "url": "https://github.com/aiidateam/aiida-diff",
+    "name": "aiida-champ",
+    "author": "Ravindra Shinde",
+    "author_email": "r.l.shinde@utwente.nl",
+    "description": "AiiDA plugin that wraps the vmc executable of CHAMP code for computing the total energy and much more stuff.",
+    "url": "https://github.com/neelravi/aiida-champ",
     "license": "MIT",
     "classifiers": [
         "Programming Language :: Python",
@@ -15,16 +15,16 @@
     "version": "1.2.0",
     "entry_points": {
         "aiida.data": [
-            "diff = aiida_diff.data:DiffParameters"
+            "CHAMP = aiida_champ.data:CHAMPParameters"
         ],
         "aiida.calculations": [
-            "diff = aiida_diff.calculations:DiffCalculation"
+            "CHAMP = aiida_champ.calculations:CHAMPCalculation"
         ],
         "aiida.parsers": [
-            "diff = aiida_diff.parsers:DiffParser"
+            "CHAMP = aiida_champ.parsers:CHAMPParser"
         ],
         "aiida.cmdline.data": [
-            "diff = aiida_diff.cli:data_cli"
+            "CHAMP = aiida_champ.cli:data_cli"
         ]
     },
     "include_package_data": true,

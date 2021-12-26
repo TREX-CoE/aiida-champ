@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Calculations provided by aiida_diff.
+Calculations provided by aiida_champ.
 
 Register calculations via the "aiida.calculations" entry point in setup.json.
 """
@@ -10,7 +10,7 @@ from aiida.orm import SinglefileData, Float
 
 
 
-class DiffCalculation(CalcJob):
+class CHAMPCalculation(CalcJob):
     """
     AiiDA calculation plugin wrapping the CHAMP's vmc executable.
 
@@ -31,7 +31,7 @@ class DiffCalculation(CalcJob):
             'num_machines': 1,
             'num_mpiprocs_per_machine': 1,
         }
-        spec.inputs['metadata']['options']['parser_name'].default = 'diff'
+        spec.inputs['metadata']['options']['parser_name'].default = 'CHAMP'
 
         # new input ports
         spec.input('metadata.options.output_filename', valid_type=str, default='vmc.out')
