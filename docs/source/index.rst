@@ -1,11 +1,10 @@
-.. figure:: images/AiiDA_transparent_logo.png
-    :width: 250px
-    :align: center
+|pic1|        |pic2|
 
-.. figure:: images/logo_champ_reduced.png
-    :width: 250px
-    :align: center
+.. |pic1| image:: images/AiiDA_transparent_logo.png
+   :width: 250px
 
+.. |pic2| image:: images/logo_champ_reduced.png
+   :height: 100px
 
 The aiida-champ plugin for `AiiDA`_
 =====================================================
