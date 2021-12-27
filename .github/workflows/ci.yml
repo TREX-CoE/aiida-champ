@@ -45,12 +45,12 @@ jobs:
         pip install -e .[testing]
         reentry scan -r aiida
 
-    - name: Run test suite
-      env:
-        AIIDA_TEST_BACKEND: ${{ matrix.backend }}
-        # show timings of tests
-        PYTEST_ADDOPTS: "--durations=0"
-      run: py.test --cov aiida_champ --cov-append .
+    # - name: Run test suite
+    #   env:
+    #     AIIDA_TEST_BACKEND: ${{ matrix.backend }}
+    #     # show timings of tests
+    #     PYTEST_ADDOPTS: "--durations=0"
+    #   run: py.test --cov aiida_champ --cov-append .
 
   docs:
     runs-on: ubuntu-latest
