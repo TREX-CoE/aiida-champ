@@ -12,7 +12,7 @@
         "Natural Language :: English",
         "Framework :: AiiDA"
     ],
-    "version": "1.2.5",
+    "version": "1.2.6",
     "entry_points": {
         "aiida.data": [
             "CHAMP = aiida_champ.data:CHAMPParameters"
