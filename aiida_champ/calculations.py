@@ -81,7 +81,7 @@ class CHAMPCalculation(CalcJob):
         ]
 
         if 'trexio' in self.inputs:
-            calcinfo.local_copy_list.append(self.inputs.trexio.uuid, self.inputs.trexio.filename, self.inputs.trexio.filename)
+            calcinfo.local_copy_list.append((self.inputs.trexio.uuid, self.inputs.trexio.filename, self.inputs.trexio.filename))
 
         # Copy the pool directory
         if 'pooldir' in self.inputs:
