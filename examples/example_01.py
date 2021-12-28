@@ -55,8 +55,8 @@ def test_run(champ_code):
 
     # Note: in order to submit your calculation to the aiida daemon, do:
     result = engine.run(CalculationFactory('CHAMP'), **inputs)
-    computed_diff = result['Output'].get_content()
-    print('Outout of the Calculation: \n{}'.format(computed_diff))
+    computed_output = result['Output'].get_content()
+    print('Outout of the Calculation: \n{}'.format(computed_output))
 
 
 @click.command()

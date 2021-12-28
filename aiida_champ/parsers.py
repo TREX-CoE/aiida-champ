@@ -42,6 +42,7 @@ class CHAMPParser(Parser):
         # Check that folder content is as expected
         files_retrieved = self.retrieved.list_object_names()
         files_expected = [output_filename]
+        print ("Retrieved files ", files_retrieved)
 
         # Note: set(A) <= set(B) checks whether A is a subset of B
         if not set(files_expected) <= set(files_retrieved):

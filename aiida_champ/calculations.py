@@ -48,7 +48,8 @@ class CHAMPCalculation(CalcJob):
         # new output ports
         spec.output('Output', valid_type=SinglefileData, help='Output file of the VMC/DMC calculation')
         spec.output('Energy', valid_type=Float, required=False, help='Output total energy of the VMC/DMC calculation')
-
+        spec.output('Restart', valid_type=SinglefileData, help='Restart file of the VMC/DMC calculation')
+        spec.output('ParserLog', valid_type=SinglefileData, help='Parser log file of the VMC/DMC calculation')
         spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES', message='Calculation did not produce all expected output files.')
 
 
@@ -87,6 +88,6 @@ class CHAMPCalculation(CalcJob):
             for filename in self.inputs.pooldir.list_object_names():
                 calcinfo.local_copy_list.append((self.inputs.pooldir.uuid, filename,  os.path.join('pool', filename) ))
 
-        calcinfo.retrieve_list = [self.metadata.options.output_filename]
+        calcinfo.retrieve_list = [self.metadata.options.output_filename, 'parser.log', 'restart_vmc']
 
         return calcinfo
