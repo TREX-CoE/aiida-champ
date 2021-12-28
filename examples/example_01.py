@@ -26,42 +26,28 @@ def test_run(champ_code):
 
 
     SinglefileData = DataFactory('singlefile')
-    # RemoteData = DataFactory('remotedata')
+    FolderData = DataFactory('folder')
 
     filemain = SinglefileData(file=path.join(INPUT_DIR, 'vmc.inp'))
-    molecule = SinglefileData(file=path.join(INPUT_DIR, 'butadiene.xyz'))
-
-    # pooldir = RemoteData(file=POOL_DIR)
-
-    ecp1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.C'))
-    ecp2 = SinglefileData(file=path.join(INPUT_DIR, 'BFD.gauss_ecp.dat.H'))
+    pooldir = FolderData(tree=POOL_DIR)
 
     orbitals = SinglefileData(file=path.join(INPUT_DIR, 'cas44.lcao'))
     determinants = SinglefileData(file=path.join(INPUT_DIR, 'cas44.det'))
     symmetry = SinglefileData(file=path.join(INPUT_DIR, 'cas44.sym'))
     jastrow = SinglefileData(file=path.join(INPUT_DIR, 'jastrow_good_b3lyp.0'))
     jastrowder = SinglefileData(file=path.join(INPUT_DIR, 'jastrow.der'))
-    numericalbasisinfo = SinglefileData(file=path.join(POOL_DIR, 'BFD-Q.bfinfo'))
-    numericalbasis1 = SinglefileData(file=path.join(INPUT_DIR, 'BFD-Q.basis.C'))
-    numericalbasis2 = SinglefileData(file=path.join(INPUT_DIR, 'BFD-Q.basis.H'))
 
 
     # set up calculation
     inputs = {
         'code': champ_code,
         'filemain': filemain,
-        'molecule': molecule,
-        # 'pooldir': pooldir,
-        'ecp1': ecp1,
-        'ecp2': ecp2,
+        'pooldir': pooldir,
         'orbitals': orbitals,
         'determinants': determinants,
         'symmetry': symmetry,
         'jastrow': jastrow,
         'jastrowder': jastrowder,
-        'numericalbasisinfo': numericalbasisinfo,
-        'numericalbasis1': numericalbasis1,
-        'numericalbasis2': numericalbasis2,
         'metadata': {
             'description': 'Sample job submission with the aiida_champ plugin example 01',
         },
