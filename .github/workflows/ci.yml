@@ -47,11 +47,11 @@ jobs:
 
     - name: Install GNU compilers and libraries
       run: |
-           sudo apt install -y gfortran
-           sudo apt install -y openmpi-bin
-           sudo apt install -y libopenmpi-dev
-           sudo apt install -y libblacs-mpi-dev
-           sudo apt install -y liblapack-dev
+        sudo apt install -y gfortran
+        sudo apt install -y openmpi-bin
+        sudo apt install -y libopenmpi-dev
+        sudo apt install -y libblacs-mpi-dev
+        sudo apt install -y liblapack-dev
 
     - name: Clone CHAMP code from the repository
       uses: actions/checkout@@v2.4.0
